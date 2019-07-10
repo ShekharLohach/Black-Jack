@@ -1,10 +1,5 @@
 import random
 from itertools import permutations, repeat
-# class Deck():
-
-cards = ['A', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'K', 'Q']
-# cards_colors=['Red', 'Black']
-cards_suits=['Hearts', 'Diamond', 'Spades', 'Club']
 all_cards=['A of Hearts','A of Diamond','A of Spades','A of Club','1 of Hearts','1 of Diamond','1 of Spades',
     '1 of Club', '2 of Hearts','2 of Diamond','2 of Spades','2 of Club','3 of Hearts','3 of Diamond','3 of Spades',
     '3 of Club', '4 of Hearts','4 of Diamond','4 of Spades','4 of Club','5 of Hearts','5 of Diamond','5 of Spades',
@@ -13,12 +8,63 @@ all_cards=['A of Hearts','A of Diamond','A of Spades','A of Club','1 of Hearts',
     '9 of Club', '10 of Hearts','10 of Diamond','10 of Spades','10 of Club','J of Hearts','J of Diamond','J of Spades',
     'J of Club', 'K of Hearts','K of Diamond','K of Spades','K of Club','Q of Hearts','Q of Diamond','Q of Spades',
     'Q of Club',
-]
+           ]
 
-
-# print((random.choice(all_cards)))
+cards_value={'A': (1, 11), 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 'Q': 10, 'K': 10, 'J': 10}
+l=[]
+wins=0
+busts=0
+losses=0
+streak=21
 class Deck():
+    player_cards = []
+    computer_cards = []
 
-    def __init__(self):
-        pass
+    def __init__(self, name):
+        self.name = name
+
+    def person(self):
+        self.player_cards.append(random.choice(all_cards))
+        self.player_cards.append(random.choice(all_cards))
+        return self.player_cards
+
+    def comuter(self):
+        self.computer_cards.append(random.choice(all_cards))
+        self.computer_cards.append(random.choice(all_cards))
+        return self.computer_cards[0]
+
+    # def display(self):
+    #     print(self.computer_cards, "Card hidden")
+    #     print(self.player_cards)
+
+
+class Money():
+    won=False
+    def __init__(self,balance):
+        self.balance=balance
+
+    def add_money(self,amount):
+        self.balance +=amount
+
+    def bet_amount(self,amount):
+        if(self.won=='True'):
+            self.balance +=amount
+
+        else:
+            self.balance -=amount
+
+ini=Deck("john")
+(ini.display())
+
+class move():
+
+    def __init__(self,move):
+        self.move=move
+
+    def move(self):
+        if(self.move=="hit"):
+            self.player_cards.append(random.choice(all_cards))
+
+        else:
+            pass
 
