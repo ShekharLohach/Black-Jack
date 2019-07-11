@@ -10,13 +10,16 @@ all_cards=['A of Hearts','A of Diamond','A of Spades','A of Club','1 of Hearts',
     'Q of Club',
            ]
 
-cards_value={'A': (1, 11), 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 'Q': 10, 'K': 10, 'J': 10}
-l=[]
-wins=0
-busts=0
-losses=0
-streak=21
-class Deck():
+cards_value = {'A': (1, 11), 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 'Q': 10, 'K': 10, 'J': 10}
+list1 = []
+wins = 0
+player_value = 0
+computer_value = 0
+busted = 0
+losses = 0
+streak = 21
+class Deck() :
+    # busted=0
     player_cards = []
     computer_cards = []
 
@@ -28,11 +31,44 @@ class Deck():
         self.player_cards.append(random.choice(all_cards))
         return self.player_cards
 
-    def comuter(self):
+    def computer(self):
         self.computer_cards.append(random.choice(all_cards))
         self.computer_cards.append(random.choice(all_cards))
         return self.computer_cards[0]
+    # person()
+    # computer()
+    # print(player_cards)
+    # print(player_cards)
+    def mechanism(self):
+        for i in self.player_cards:
+            self.player_value +=self.player_cards[i][0]
+            computer_value=self.computer_cards[i][0] + computer_value
 
+
+        if(self.player_value>21 | self.computer_cards>21 ):
+            self.busted += 1
+            return "Busted"
+            if(self.player_value>21):
+               return "player busted"
+            else:
+                return "computer busted"
+
+        else:
+            diff=-1
+            if(diff>-1):
+                if(self.player_value>self.computervalue):
+                    diff = self.player_value-self.computer_value
+                else:
+                    diff = self.computer_value - self.player_value
+
+        if(self.computer_cards>21):
+            self.busted += 1
+            return "Busted"
+        else:
+            pass
+
+dec=Deck('john')
+(dec.computer())
     # def display(self):
     #     print(self.computer_cards, "Card hidden")
     #     print(self.player_cards)
@@ -53,8 +89,7 @@ class Money():
         else:
             self.balance -=amount
 
-ini=Deck("john")
-(ini.display())
+
 
 class move():
 
