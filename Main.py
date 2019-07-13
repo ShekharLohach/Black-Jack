@@ -1,5 +1,5 @@
 import random
-from itertools import permutations, repeat
+
 all_cards=['A of Hearts', 'A of Diamond', 'A of Spade', 'A of Club', '1 of Hearts', '1 of Diamond', '1 of spade',
     '1 of Club', '2 of Hearts', '2 of Diamond', '2 of Spade', '2 of Club', '3 of Hearts', '3 of Diamond', '3 of spade',
     '3 of Club', '4 of Hearts', '4 of Diamond', '4 of Spade', '4 of Club', '5 of Hearts', '5 of Diamond', '5 of spade',
@@ -93,7 +93,7 @@ class Deck:
 
         if self.player_value > 21 | self.computer_value > 21:
             self.busted += 1
-            if self.player_value>21:
+            if self.player_value > 21:
                 return "player busted"
             else:
                 return "computer busted"
