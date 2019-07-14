@@ -13,21 +13,18 @@ all_cards=['A of Hearts', 'A of Diamond', 'A of Spade', 'A of Club', '1 of Heart
 cards_value = {'A': (1, 11), 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 'Q': 10, 'K': 10, 'J': 10}
 list1 = []
 wins = 0
-player_value = 0
-computer_value = 0
-busted = 0
 losses = 0
 streak = 21
 win = False
 
-
+#decide computer factor
 class Deck:
 
-    # busted=0
-    player_cards = ['J of Club', 'K of Hearts', '8 of spade']
-    computer_cards = ['8 of spade']
+    busted = 0
+    player_cards = []
+    computer_cards = []
     player_value = 0
-    computer_value = 21
+    computer_value = 0
 
     def __init__(self):
         # self.name = name
@@ -36,17 +33,17 @@ class Deck:
 
     def person(self):
         self.player_cards.append(random.choice(all_cards))
-        self.player_cards.append(random.choice(all_cards))
+
         return self.player_cards
 
     def computer(self):
         self.computer_cards.append(random.choice(all_cards))
-        self.computer_cards.append(random.choice(all_cards))
-        return self.computer_cards[0]
+
+        return self.computer_cards
 
     def display(self):
         print(self.player_cards)
-        print(self.computer_cards)
+        print(self.computer_cards[0])
 
     # person()
     # computer()
@@ -56,7 +53,7 @@ class Deck:
         for i in range(len(self.player_cards)):
             if self.player_cards[i][0] == "A":
                 choose = input("choose the value of A you want to use")
-                value1 = choose
+                value1 = int(choose)
                 self.player_value += value1
             elif self.player_cards[i][0] == 'K':
                 value2 = 10
@@ -75,7 +72,7 @@ class Deck:
         for i in range(len(self.computer_cards)):
             if self.computer_cards[i][0] == "A":
                 choose = input("choose the value of A you want to use")
-                value1 = choose
+                value1 = int(choose)
                 self.computer_value += value1
             elif self.computer_cards[i][0] == 'K':
                 value2 = 10
@@ -91,46 +88,53 @@ class Deck:
                 # computer_value=self.computer_cards[i][0] + computer_value
         print(self.computer_value)
 
-        if self.player_value > 21 | self.computer_value > 21:
+    def value_check(self):
+        if self.player_value > 21:
             self.busted += 1
-            if self.player_value > 21:
-                return "player busted"
-            else:
-                return "computer busted"
+            print("player busted")
+        elif self.computer_value > 21:
+            print("computer busted")
 
         else:
             if self.player_value > self.computer_value:
                 # diff = self.player_value-self.computer_value
+                win=True
                 print("player won")
+
             else:
                 # diff = self.computer_value - self.player_value
                 print("computer won")
 
 
-class Choice:
+class Choice(Deck):
 
-    def choice(self):
+    def choices(self):
         # while(win=="False"):
         choice = input("Enter your chioce")
         if choice == "hit":
-            pass
+            Deck.person(self)
         else:
-            pass
+            Deck.mechanism(self)
+            Deck.value_check(self)
 
 
-hey = Deck()
-hey.person()
-hey.computer()
-hey.display()
-hey.mechanism()
+# hey=Choice()
+# hey.choices()
+# hey = Deck()
+# hey.person()
+# hey.computer()
+# hey.display()
+# hey.mechanism()
+# hey.value_check()
 
 
-class Money:
+class Money(Deck):
 
-    win = True
+    win = False
+    Balance=int(input("Enter your Balance"))
 
-    def __init__(self, balance):
-        self.balance = balance
+    def __init__(self):
+        Deck.__init__(self)
 
     def add_money(self, amount):
         self.balance += amount
@@ -142,21 +146,25 @@ class Money:
         else:
             self.balance -= amount
             print(self.balance)
-            if self.win == 'True':
+            Deck.person(self)
+            Deck.person(self)
+            Deck.computer(self)
+            Deck.computer(self)
+            Deck.display(self)
+            Deck.mechanism()
+            Deck.value_check()
+            if self.win == True:
                 self.balance += amount
-            # else:
-            #     self.balance -=amount
 
 
-# class move():
-#
-#     def __init__(self,move):
-#         self.move=move
-#
-#     def move(self):
-#         if(self.move=="hit"):
-#             self.player_cards.append(random.choice(all_cards))
-#
-#         else:
-#             pass
-#
+class Main(Money):
+
+    def __init__(self):
+        Money.__init__(self)
+
+    def winner(self):
+        while win == False :
+            Money.debt(self)
+
+hey=Main()
+hey.winner()
